@@ -1,0 +1,76 @@
+﻿@page
+@model LibraryManagement.Pages.ItemsToBorrow.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>LibraryItem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LibraryItem.Title" class="control-label"></label>
+                <input asp-for="LibraryItem.Title" class="form-control" />
+                <span asp-validation-for="LibraryItem.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LibraryItem.Author" class="control-label"></label>
+                <input asp-for="LibraryItem.Author" class="form-control" />
+                <span asp-validation-for="LibraryItem.Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LibraryItem.Pages" class="control-label"></label>
+                <input asp-for="LibraryItem.Pages" class="form-control" />
+                <span asp-validation-for="LibraryItem.Pages" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LibraryItem.Type" class="control-label"></label>
+                <select asp-for="LibraryItem.Type" asp-items="LibraryManagement.Models.LibraryItem.TypeOptions()"></select>
+                <span asp-validation-for="LibraryItem.Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LibraryItem.Category" class="control-label"></label>
+                <select asp-for="LibraryItem.Category" asp-items="ViewBag.Categories">
+                    <option>Select</option>
+                </select>
+                <span asp-validation-for="LibraryItem.Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LibraryItem.RunTimeMinutes" class="control-label"></label>
+                <input asp-for="LibraryItem.RunTimeMinutes" class="form-control" />
+                <span asp-validation-for="LibraryItem.RunTimeMinutes" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="LibraryItem.isBorrowable" /> @Html.DisplayNameFor(model => model.LibraryItem.isBorrowable)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="LibraryItem.Borrower" class="control-label"></label>
+                <input asp-for="LibraryItem.Borrower" class="form-control" disabled />
+                <span asp-validation-for="LibraryItem.Borrower" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LibraryItem.BorrowerDate" class="control-label"></label>
+                <input asp-for="LibraryItem.BorrowerDate" class="form-control" disabled/>
+                <span asp-validation-for="LibraryItem.BorrowerDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
