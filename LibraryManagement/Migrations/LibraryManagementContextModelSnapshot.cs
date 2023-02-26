@@ -37,7 +37,7 @@ namespace LibraryManagement.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Category", (string)null);
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("LibraryManagement.Models.LibraryItem", b =>
@@ -49,6 +49,7 @@ namespace LibraryManagement.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Author")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Borrower")
@@ -61,12 +62,15 @@ namespace LibraryManagement.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("Pages")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("RunTimeMinutes")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
@@ -79,7 +83,7 @@ namespace LibraryManagement.Migrations
 
                     b.HasIndex("CategoryID");
 
-                    b.ToTable("LibraryItem", (string)null);
+                    b.ToTable("LibraryItem");
                 });
 
             modelBuilder.Entity("LibraryManagement.Models.LibraryItem", b =>

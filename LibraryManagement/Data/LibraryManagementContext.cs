@@ -14,8 +14,8 @@ namespace LibraryManagement.Data
         {
         }
 
-        public DbSet<LibraryManagement.Models.Category> Category { get; set; } = default!;
+        public DbSet<Category> Category { get; set; } = default!;
 
-        public DbSet<LibraryManagement.Models.LibraryItem> LibraryItem { get; set; } = default!;
+        public DbSet<LibraryItem> LibraryItem { get; set; } = default!;
     }
 }

@@ -27,6 +27,8 @@ namespace LibraryManagement.Pages.ItemsToBorrow
         public Category LibraryCategory { get; set; }
         public SelectList getCategories { get; set; }
 
+        public SelectList getTypes { get; set; }
+
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
