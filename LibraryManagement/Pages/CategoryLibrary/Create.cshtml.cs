@@ -31,15 +31,35 @@ namespace LibraryManagement.Pages.CategoryLibrary
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Category == null || Category == null)
+            if(!_context.Category.Any(c => c.CategoryName == Category.CategoryName))
             {
-                return Page();
+                if (!ModelState.IsValid || _context.Category == null || Category == null)
+                {
+                    return Page();
+                }
+
+
+
+                _context.Category.Add(Category);
+                await _context.SaveChangesAsync();
+
+                //return RedirectToPage("./Index");
             }
 
-            _context.Category.Add(Category);
-            await _context.SaveChangesAsync();
+            //if (!ModelState.IsValid || _context.Category == null || Category == null)
+            //{
+            //    return Page();
+            //}
+
+            //_context.Category.Add(Category);
+            //await _context.SaveChangesAsync();
+            ModelState.AddModelError(string.Empty, "That Category already exists!");
+
+            //return RedirectToPage("./Create");
 
             return RedirectToPage("./Index");
+
+
         }
     }
 }

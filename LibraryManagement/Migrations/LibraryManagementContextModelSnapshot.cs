@@ -37,7 +37,7 @@ namespace LibraryManagement.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Category");
+                    b.ToTable("Category", (string)null);
                 });
 
             modelBuilder.Entity("LibraryManagement.Models.LibraryItem", b =>
@@ -79,7 +79,7 @@ namespace LibraryManagement.Migrations
 
                     b.HasIndex("CategoryID");
 
-                    b.ToTable("LibraryItem");
+                    b.ToTable("LibraryItem", (string)null);
                 });
 
             modelBuilder.Entity("LibraryManagement.Models.LibraryItem", b =>

@@ -30,16 +30,6 @@
                 <span asp-validation-for="LibraryItem.Pages" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LibraryItem.Type" class="control-label"></label>
-                <select asp-for="LibraryItem.Type" asp-items="LibraryManagement.Models.LibraryItem.TypeOptions()"></select>
-                <span asp-validation-for="LibraryItem.Type" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LibraryItem.Category" class="control-label"></label>
-                <select asp-for="LibraryItem.Category" asp-items="ViewBag.Categories"></select>
-                <span asp-validation-for="LibraryItem.Category" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="LibraryItem.RunTimeMinutes" class="control-label"></label>
                 <input asp-for="LibraryItem.RunTimeMinutes" class="form-control" />
                 <span asp-validation-for="LibraryItem.RunTimeMinutes" class="text-danger"></span>

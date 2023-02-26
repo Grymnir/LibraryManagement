@@ -57,7 +57,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="LibraryItem.BorrowerDate" class="control-label"></label>
-                <input asp-for="LibraryItem.BorrowerDate" class="form-control" disabled/>
+                <input asp-for="LibraryItem.BorrowerDate" class="form-control" disabled />
                 <span asp-validation-for="LibraryItem.BorrowerDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -72,5 +72,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -24,7 +24,10 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.LibraryItem.Author)
         </dd>
-         <dt class="col-sm-2">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LibraryItem.Pages)
+        </dt>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.LibraryItem.Type)
         </dt>
         <dd class="col-sm-10">
@@ -36,17 +39,8 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.LibraryItem.Category)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LibraryItem.Pages)
-        </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.LibraryItem.Pages)
-        </dd>
-        <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.LibraryItem.Category)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LibraryItem.Category)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.LibraryItem.RunTimeMinutes)

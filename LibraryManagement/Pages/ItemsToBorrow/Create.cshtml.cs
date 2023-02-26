@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagement.Pages.ItemsToBorrow
 {
@@ -29,10 +30,12 @@ namespace LibraryManagement.Pages.ItemsToBorrow
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.LibraryItem == null || LibraryItem == null)
-          {
+            if (!ModelState.IsValid || _context.LibraryItem == null || LibraryItem == null)
+            {
                 return Page();
-          }
+            }
+
+            //Models.Category categories = _context.Category.Where(c => c.ID == LibraryCategory.).SingleOrDefaultAsync();
             _context.LibraryItem.Add(LibraryItem);
             await _context.SaveChangesAsync();
 

@@ -30,8 +30,6 @@ namespace LibraryManagement.Pages.ItemsToBorrow
                 return NotFound();
             }
 
-            List<Category> categories = _context.Category.ToList();
-            ViewData["Categories"] = new SelectList(categories, "ID", "CategoryName");
             var libraryitem =  await _context.LibraryItem.FirstOrDefaultAsync(m => m.ID == id);
             if (libraryitem == null)
             {
