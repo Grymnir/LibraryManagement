@@ -19,6 +19,7 @@ namespace LibraryManagement.Pages.ItemsToBorrow
         {
             List<Category> categories = _context.Category.ToList();
             ViewData["Categories"] = new SelectList(categories, "ID", "CategoryName");
+            //LibraryItems = await _context.LibraryItem.Include(x => x.Category).ToListAsync();
             return Page();
         }
 
@@ -26,6 +27,9 @@ namespace LibraryManagement.Pages.ItemsToBorrow
         public LibraryItem LibraryItem { get; set; } = default!;
         public Category LibraryCategory { get; set; }
         public SelectList getCategories { get; set; }
+
+        public IList<LibraryItem> LibraryItems { get; set; } = default!;
+
 
         public SelectList getTypes { get; set; }
 
@@ -37,8 +41,10 @@ namespace LibraryManagement.Pages.ItemsToBorrow
                 return Page();
             }
 
-            //Models.Category categories = _context.Category.Where(c => c.ID == LibraryCategory.).SingleOrDefaultAsync();
             _context.LibraryItem.Add(LibraryItem);
+
+            //LibraryItems = await _context.LibraryItem
+            //.Include(b => b.Category).ToListAsync();
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

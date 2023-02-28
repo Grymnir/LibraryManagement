@@ -25,10 +25,13 @@ namespace LibraryManagement.Pages.ItemsToBorrow
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            List<Category> categories = _context.Category.ToList();
+            ViewData["Categories"] = new SelectList(categories, "ID", "CategoryName");
             if (id == null || _context.LibraryItem == null)
             {
                 return NotFound();
             }
+
 
             var libraryitem =  await _context.LibraryItem.FirstOrDefaultAsync(m => m.ID == id);
             if (libraryitem == null)
@@ -41,7 +44,7 @@ namespace LibraryManagement.Pages.ItemsToBorrow
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPost()
         {
             if (!ModelState.IsValid)
             {
@@ -72,6 +75,17 @@ namespace LibraryManagement.Pages.ItemsToBorrow
         private bool LibraryItemExists(int id)
         {
           return (_context.LibraryItem?.Any(e => e.ID == id)).GetValueOrDefault();
+        }
+        public IActionResult OnClearCheckOut()
+        {
+
+            return RedirectToPage("./Edit");
+        }
+        public IActionResult OnClearCheckIn()
+        {
+            
+
+            return RedirectToPage("./Index");
         }
     }
 }

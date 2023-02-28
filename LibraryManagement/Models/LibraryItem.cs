@@ -7,22 +7,23 @@ namespace LibraryManagement.Models
     {
         public int ID { get; set; }
 
-        public Category? Category { get; set; }
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
+        public virtual Category? Category { get; set; }
+
+        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$", ErrorMessage = "Only Text Please! No numbers!")]
         [Required]
         public string? Title { get; set; }
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$", ErrorMessage = "Only text please!")]
         [Required]
         public string? Author { get; set; }
         [Required]
+        [Range(1, 1000)]
         public Nullable<int> Pages { get; set; }
 
-        [Range(1, 100)]
-        [Required]
+        [Range(1, 1000)]
         public Nullable<int> RunTimeMinutes { get; set; }
 
         public bool isBorrowable { get; set; }
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$", ErrorMessage = "Borrower cant be number! Only text!")]
         public string? Borrower { get; set; }
         [DataType(DataType.Date)]
         public Nullable<DateTime> BorrowerDate { get; set; }

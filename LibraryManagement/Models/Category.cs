@@ -12,13 +12,5 @@ namespace LibraryManagement.Models
         [Required]
         [StringLength(50)]
         public string? CategoryName { get; set; }
-
-        public static IEnumerable<SelectListItem>? TypeCategoryOptions()
-        {
-            return new[]
-            {
-                new SelectListItem{ Text="CategoryName", Value="ID"}
-            };
-        }
     }
 }

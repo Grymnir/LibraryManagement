@@ -32,8 +32,7 @@ namespace LibraryManagement.Migrations
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -58,7 +57,7 @@ namespace LibraryManagement.Migrations
                     b.Property<DateTime?>("BorrowerDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("CategoryID")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Pages")
@@ -81,7 +80,7 @@ namespace LibraryManagement.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CategoryID");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("LibraryItem");
                 });
@@ -89,10 +88,15 @@ namespace LibraryManagement.Migrations
             modelBuilder.Entity("LibraryManagement.Models.LibraryItem", b =>
                 {
                     b.HasOne("LibraryManagement.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryID");
+                        .WithMany("Items")
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("LibraryManagement.Models.Category", b =>
+                {
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

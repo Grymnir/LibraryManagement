@@ -25,6 +25,18 @@
                 <span asp-validation-for="LibraryItem.Author" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="LibraryItem.Type" class="control-label"></label>
+                <select asp-for="LibraryItem.Type" asp-items="LibraryManagement.Models.LibraryItem.TypeOptions()"></select>
+                <span asp-validation-for="LibraryItem.Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LibraryItem.Category" class="control-label"></label>
+                <select asp-for="LibraryItem.Category" asp-items="ViewBag.Categories">
+                    <option>Select</option>
+                </select>
+                <span asp-validation-for="LibraryItem.Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="LibraryItem.Pages" class="control-label"></label>
                 <input asp-for="LibraryItem.Pages" class="form-control" />
                 <span asp-validation-for="LibraryItem.Pages" class="text-danger"></span>
@@ -56,6 +68,9 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Check Out" class="btn btn-primary" name="checkOutButton" />
+                <input type="submit" value="Check In" class="btn btn-primary" name="checkInButton" />
+
             </div>
         </form>
     </div>
