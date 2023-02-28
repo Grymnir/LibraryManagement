@@ -76,14 +76,46 @@ namespace LibraryManagement.Pages.ItemsToBorrow
         {
           return (_context.LibraryItem?.Any(e => e.ID == id)).GetValueOrDefault();
         }
-        public IActionResult OnClearCheckOut()
-        {
 
-            return RedirectToPage("./Edit");
-        }
-        public IActionResult OnClearCheckIn()
+        public async Task<IActionResult> OnPostCheckIn()
         {
-            
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _context.Attach(LibraryItem).State = EntityState.Modified;
+
+            LibraryItem.Borrower= null;
+            LibraryItem.BorrowerDate = null;
+
+            await _context.SaveChangesAsync();
+            return RedirectToPage("./ItemsToBorrow/Edit");
+        }
+        public async Task<IActionResult> OnPostCheckOut()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _context.Attach(LibraryItem).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!LibraryItemExists(LibraryItem.ID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
             return RedirectToPage("./Index");
         }
