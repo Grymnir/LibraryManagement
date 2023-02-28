@@ -22,16 +22,37 @@ namespace LibraryManagement.Pages.ItemsToBorrow
 
         public IList<LibraryItem> LibraryItem { get;set; } = default!;
 
-        //public SelectList? Types { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? SearchString { get; set; }
+
+        public SelectList? Genres { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? MovieGenre { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string? TypeItem { get; set; }
 
         public async Task OnGetAsync()
         {
-            if (_context.LibraryItem != null)
-            {
+            // Use LINQ to get list of genres.
+            IQueryable<string> genreQuery = from m in _context.LibraryItem
+                                            orderby m.Type
+                                            select m.Type;
 
-                LibraryItem = await _context.LibraryItem.OrderBy(c => c.Category).ToListAsync();
+            //var movies = from m in _context.LibraryItem
+            //             select m;
+            var libraryTypes = from m in _context.LibraryItem
+                         select m;
+
+            if (!string.IsNullOrEmpty(TypeItem))
+            {
+                libraryTypes = libraryTypes.Where(x => x.Type == TypeItem);
             }
-            //Types = new SelectList(await TypeQuery.Distinct().ToListAsync());
+            Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+            LibraryItem = await libraryTypes.ToListAsync();
+
+
         }
     }
 }

@@ -20,7 +20,9 @@
                 <span asp-validation-for="Category.CategoryName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" asp-page-handler="Submit" />
+                <input type="submit" value="Check In" asp-page-handler="CheckIn" />
+                <input type="submit" value="Check Out" formaction="CheckIn" />
             </div>
         </form>
     </div>
